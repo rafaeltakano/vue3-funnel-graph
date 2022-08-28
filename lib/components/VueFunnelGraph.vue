@@ -102,4 +102,14 @@ const onTransition = (el, done) => {
   if (!props.animated) done();
   setTimeout(() => done(), 700);
 };
+
+const drawPaths = () => {
+  prevPaths.value = paths.value;
+  paths.value = [];
+  const definitions = getPathDefinitions();
+
+  definitions.forEach((d) => {
+    paths.value.push(d);
+  });
+};
 </script>
