@@ -112,4 +112,66 @@ const drawPaths = () => {
     paths.value.push(d);
   });
 };
+
+const getColors = computed(() => {
+  const colors = toRaw(props.colors);
+  const defcolors = toRaw(defaultColors.value);
+
+  if (colors instanceof Array && colors.length === 0)
+    return getDefaultColors(is2d() ? props.values.length : 2);
+
+  if (colors.length < paths.value.length)
+    return colors.concat(
+      [...defcolors].splice(
+        paths.value.length,
+        paths.value.length - colors.length
+      )
+    );
+
+  return colors;
+});
+
+const colorSet = computed(() => {
+  const scopeSet = [];
+  let gradientCount = 0;
+
+  paths.value.map((v, i) => {
+    const values = is2d() ? getColors.value[i] : getColors.value;
+    const solid = typeof values === "string" || values.length === 1;
+    const fillMode = solid ? "solid" : "gradient";
+
+    if (!solid) gradientCount += 1;
+
+    scopeSet.push({
+      values,
+      fillMode,
+      fill: solid ? values : `url('#funnelGradient-${gradientCount}')`,
+    });
+  });
+
+  return scopeSet;
+});
+
+const gradientSet = computed(() => {
+  const scopeSet = [];
+
+  colorSet.value.map((colors) => {
+    if (colors.fillMode === "gradient") scopeSet.push(colors);
+  });
+
+  return scopeSet;
+});
+
+const gradientAngle = computed(() => {
+  return `rotate(${props.gradientDirection === "vertical" ? 90 : 0})`;
+});
+
+const valuesFormatted = computed(() => {
+  if (is2d()) {
+    const values2d = getValues2d();
+    return values2d.map((value) => formatNumber(value));
+  }
+  const values3d = toRaw(props.values).map((value) => formatNumber(value));
+  return values3d;
+});
 </script>
