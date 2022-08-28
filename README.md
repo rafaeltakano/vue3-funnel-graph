@@ -21,7 +21,7 @@ This is the Vue.js version of FunnelGraph.js, learn more about the library and s
 
 #### NPM
 ```js
-npm i vue3-funnel-graph
+npm i vue3-funnel-graph-js
 ```
 
 ## Usage
@@ -29,7 +29,8 @@ npm i vue3-funnel-graph
 After installing, import the `VueFunnelGraph` component:
 
 ```js
-import { VueFunnelGraph } from 'vue3-funnel-graph';
+import "vue3-funnel-graph-js/dist/style.css";
+import { VueFunnelGraph } from "vue3-funnel-graph-js";
 ```
 
 You can now use the custom element:

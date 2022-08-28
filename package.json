@@ -1,5 +1,5 @@
 {
-  "name": "vue3-funnel-graph",
+  "name": "vue3-funnel-graph-js",
   "type": "module",
   "files": [
     "dist"
@@ -13,7 +13,7 @@
     },
     "./dist/style.css": "./dist/style.css"
   },
-  "version": "0.0.0",
+  "version": "0.0.2",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
