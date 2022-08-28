@@ -203,4 +203,18 @@ watch(
     throw new TypeError("Variable graph is not instance of VueFunnelGraph");
   }
 );
+
+onBeforeMount(() => {
+  graph.value = new VueFunnelGraph({
+    height: props.height,
+    width: props.width,
+    direction: props.direction,
+    data: {
+      labels: props.labels,
+      values: props.values,
+    },
+  });
+
+  drawPaths();
+});
 </script>
