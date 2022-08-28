@@ -174,4 +174,33 @@ const valuesFormatted = computed(() => {
   const values3d = toRaw(props.values).map((value) => formatNumber(value));
   return values3d;
 });
+
+watch(
+  () => props.values,
+  () => {
+    if (graph.value?.setValues) {
+      graph.value.setValues(toRaw(props.values));
+      return drawPaths();
+    }
+    throw new TypeError("Variable graph is not instance of VueFunnelGraph");
+  }
+);
+
+watch(
+  () => props.direction,
+  () => {
+    if (
+      graph.value?.setDirection &&
+      graph.value?.setWidth &&
+      graph.value?.setHeight
+    ) {
+      graph.value
+        .setDirection(props.direction)
+        .setWidth(props.width)
+        .setHeight(props.height);
+      return drawPaths();
+    }
+    throw new TypeError("Variable graph is not instance of VueFunnelGraph");
+  }
+);
 </script>
