@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, toRaw, computed, onBeforeMount, watch } from "vue";
 import {
   formatNumber,
   getDefaultColors,
