@@ -3,6 +3,7 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import {
   formatNumber,
   getDefaultColors,
@@ -52,4 +53,9 @@ const props = defineProps({
     default: true,
   },
 });
+
+const graph = ref(null);
+const paths = ref([]);
+const prevPaths = ref([]);
+const defaultColors = ref(getDefaultColors(10));
 </script>
