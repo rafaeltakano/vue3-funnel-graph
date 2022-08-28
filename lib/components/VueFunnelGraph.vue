@@ -323,10 +323,6 @@ onBeforeMount(() => {
   -ms-flex-direction: column;
   flex-direction: column;
 }
-
-.svg-funnel-js {
-  font-family: Open Sans, sans-serif;
-}
 .svg-funnel-js .svg-funnel-js__container {
   width: 100%;
   height: 100%;
